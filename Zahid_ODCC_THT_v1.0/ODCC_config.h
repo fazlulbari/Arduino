@@ -3,11 +3,22 @@
 
 #include "MCU_config.h"
 
+extern float temperature;
+extern float Input_voltage;
 
-extern float temperature_thresholdHigh;
-extern float temperature_thresholdLow;
+extern int temperature_thresholdHigh;
+extern int temperature_thresholdLow;
 extern uint32_t fanToggle_Interval;
-extern int VoltageThreshold;
+extern int VoltageThres;
+extern int Baud_Rate;
+extern int Slave_id;
+
+
+extern bool Smoke_alarm;
+extern bool Temperature_alarm;
+extern bool Water_level_alarm;
+extern bool Door_alarm;
+extern bool Fan_fault_alarm;
 
 // Main control pins
 #define FAN_1_Trigger PA7
