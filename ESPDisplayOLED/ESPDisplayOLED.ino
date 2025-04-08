@@ -7,53 +7,50 @@
 #define SCL_PIN 13    // Custom SCL pin for ESP32-S3
 #define RESET_PIN 42  // Display RESET pin (optional)
 
-// Initialize the U8g2 library for SSD1306 OLED
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, 0x3C);
-
-// Bitmap of a simple logo (128x64 pixels)
-
-void Animateframe(const uint8_t bitmap_logo[]){
-  // Clear the display buffer
-  u8g2.clearBuffer();
-
-  // Draw the bitmap at (x, y) position
-  u8g2.drawBitmap(0, 0, 16, 64, bitmap_logo); // Width in bytes, Height in pixels
-
-  // Send the buffer to the display
-  u8g2.sendBuffer();
-
-  // Pause for .1 seconds
-  delay(50);
-}
+#include <Wire.h>
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Starting OLED test...");
-
-  pinMode(RESET_PIN, OUTPUT);
-
-  // Reset the display
-  digitalWrite(RESET_PIN, HIGH);  // Hold RESET low
-  delay(100);                    // Wait for 100ms
-  digitalWrite(RESET_PIN, LOW); // Release RESET
-
-  // Initialize I2C with custom SDA and SCL pins
-  Wire.begin(SDA_PIN, SCL_PIN);
-
-  // Initialize the OLED display
-  if (!u8g2.begin()) {
-    Serial.println("OLED initialization failed!");
-    while (1); // Halt execution if initialization fails
+  while (!Serial) {
+    delay(10);
   }
-  Serial.println("OLED initialized successfully!");
-}
+  Serial.println("\nI2C Scanner");
 
+  Wire.begin(12,13);
+}
 
 void loop() {
-    Animateframe(bitmap_logo1); // Pass the array name, which is a pointer to the data
-    Animateframe(bitmap_logo2);
-    Animateframe(bitmap_logo3);
-    Animateframe(bitmap_logo4);
+  byte error, address;
+  int nDevices = 0;
+
+  Serial.println("\nScanning...");
+
+  for (address = 1; address < 127; address++) {
+    Wire.beginTransmission(address);
+    error = Wire.endTransmission();
+
+    if (error == 0) {
+      Serial.print("I2C device found at address 0x");
+      if (address < 16)
+        Serial.print("0");
+      Serial.print(address, HEX);
+      Serial.println(" !");
+
+      nDevices++;
+    } else if (error == 4) {
+      Serial.print("Unknown error at address 0x");
+      if (address < 16)
+        Serial.print("0");
+      Serial.println(address, HEX);
+    }
+  }
+  if (nDevices == 0)
+    Serial.println("No I2C devices found\n");
+  else
+    Serial.println("done\n");
+
+  delay(5000);
 }
+
 
 

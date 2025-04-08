@@ -18,6 +18,10 @@ void setup() {
 
   // Print a message to the LCD
   lcd.print("Hello, STM32!");
+  Serial.begin(9600); // 16 columns and 2 rows
+
+  // Print a message to the LCD
+  Serial.print("Hello, STM32!");
 }
 
 void loop() {

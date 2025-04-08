@@ -49,7 +49,7 @@ int request_from_slave() {
   master.readHoldingRegisters(23, 0x1100, HoldingRegisters6, 8); //Apperent Power
   master.readHoldingRegisters(23, 0x1190, HoldingRegisters7, 4); //PF
   master.readHoldingRegisters(23, 0x1000, HoldingRegisters8, 2); //Total Active Energy
-  ModbusRTUMasterError result =master.readHoldingRegisters(23, 0x13e0, HoldingRegisters9, 2); //Total Reactive Energy
+  ModbusRTUMasterError result =master.readHoldingRegisters(q, 0x13e0, HoldingRegisters9, 2); //Total Reactive Energy
   int Sign= result;
 
   if (result == 0) {

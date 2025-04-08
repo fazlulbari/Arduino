@@ -30,7 +30,11 @@ void sensorAndFanControlTask(void *pvParameters) {
         // Sensing Temperature
         temperature = sensors.readTemperature();
         Serial.println(temperature);
-
+        current1 = sensors.CurrentSence1();
+        Serial.println(current1);
+        current2 = sensors.CurrentSence2();
+        Serial.println(current2);
+        
         // Monitor sensors
         if (sensors.isDoorOpen()) {
             peripherals.controlLight(true);

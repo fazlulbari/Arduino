@@ -30,11 +30,11 @@
 #define LCD_MOSI PB12
 
 
-#define RELAY_1_Trigger  PA12  // Has LED indicator
-#define RELAY_2_Trigger  PB3
-#define RELAY_3_Trigger  PA11
-#define RELAY_4_Trigger  PA1
-#define RELAY_5_Trigger  PB6
-#define RELAY_6_Trigger  PB7
+#define RELAY_1_Trigger  PB3   // Has LED indicator
+#define RELAY_2_Trigger  PA11
+#define RELAY_3_Trigger  PA1 
+#define RELAY_4_Trigger  PB6 
+#define RELAY_5_Trigger  PB7 
+#define RELAY_6_Trigger  PA12
 
 #endif  // MCU_CONFIG_H

@@ -7,7 +7,7 @@ void Peripherals::begin() {
 }
 
 void Peripherals::setupPins() {
-    pinMode(CA_LIGHT_Trigger, OUTPUT);
+    pinMode(CA_LIGHT_PIN, OUTPUT);
     pinMode(RELAY_1_Trigger, OUTPUT);
     pinMode(RELAY_2_Trigger, OUTPUT);
     pinMode(RELAY_3_Trigger, OUTPUT);
@@ -21,5 +21,5 @@ void Peripherals::triggerRelay(int relay, bool state) {
 }
 
 void Peripherals::controlLight(bool state) {
-    digitalWrite(CA_LIGHT_Trigger, state ? HIGH : LOW);
+    digitalWrite(CA_LIGHT_PIN, state ? HIGH : LOW);
 }

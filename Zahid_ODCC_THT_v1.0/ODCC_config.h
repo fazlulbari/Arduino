@@ -5,6 +5,8 @@
 
 extern float temperature;
 extern float Input_voltage;
+extern float current1;
+extern float current2;
 
 extern int temperature_thresholdHigh;
 extern int temperature_thresholdLow;
@@ -21,13 +23,13 @@ extern bool Door_alarm;
 extern bool Fan_fault_alarm;
 
 // Main control pins
-#define FAN_1_Trigger PA7
-#define FAN_1_Sense   PA6  // Analog pin ADC for Current sensing
+#define FAN1_PWM_PIN PA7
+#define FAN1_SHUNT_PIN   PA5  // Analog pin ADC for Current sensing
 
-#define FAN_2_Trigger PA5
-#define FAN_2_Sense   PA4  // Analog pin ADC for Current sensing
+#define FAN2_PWM_PIN PA6
+#define FAN2_SHUNT_PIN   PA4  // Analog pin ADC for Current sensing
 
-#define CA_LIGHT_Trigger PA8  // Cabinet light, Turn ON when Door opens
+#define CA_LIGHT_PIN PA8  // Cabinet light, Turn ON when Door opens
 
 // Relay Alarm pins
 #define DOOR_ALARM       RELAY_1_Trigger
@@ -38,7 +40,7 @@ extern bool Fan_fault_alarm;
 #define BUZZER_Trigger   RELAY_6_Trigger
 
 // Cabinet Power voltage sense
-#define Voltage_Sense    PA0 // Analog pin ADC for Volatge sensing
+#define VOLTAGE_ADC_PIN    PA0 // Analog pin ADC for Volatge sensing
 
 // Digital Sensors
 #define Door_Sensor      PB9  //  Use Input PullUp, 0 when Opens

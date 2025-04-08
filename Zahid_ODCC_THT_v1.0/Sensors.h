@@ -15,6 +15,8 @@ public:
     bool isSmokeDetected();
     float readTemperature();
     float voltageSence();
+    float CurrentSence1();
+    float CurrentSence2();
 
 private:
     void setupPins();

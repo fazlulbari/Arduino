@@ -38,9 +38,26 @@ float Sensors::readTemperature() {
 }
 
 float Sensors::voltageSence(){
-  // Read ADC value from the input pin
-    int adcValue = analogRead(Voltage_Sense);
+    analogReadResolution(12);
+    // Read ADC value from the input pin
+    int adcValue = analogRead(VOLTAGE_ADC_PIN);
     float voltage = (adcValue * 3.3* 100) / 4095.0; // 12-bit ADC resolution (0-4095)
     return voltage; // Example value
+}
+
+float Sensors::CurrentSence1(){
+    analogReadResolution(12);
+    // Read ADC value from the input pin
+    int adcValue = analogRead(FAN1_SHUNT_PIN);
+    float current = (adcValue * 3.3* 100) / 4095.0; // 12-bit ADC resolution (0-4095)
+    return current; // Example value
+}
+
+float Sensors::CurrentSence2(){
+    analogReadResolution(12);
+    // Read ADC value from the input pin
+    int adcValue = analogRead(FAN2_SHUNT_PIN);
+    float current = (adcValue * 3.3* 100) / 4095.0; // 12-bit ADC resolution (0-4095)
+    return current; // Example value
 }
 

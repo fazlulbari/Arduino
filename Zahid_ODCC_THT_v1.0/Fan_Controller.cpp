@@ -7,24 +7,24 @@ void FanController::begin() {
 }
 
 void FanController::setupPins() {
-    pinMode(FAN_1_Trigger, OUTPUT);
-    pinMode(FAN_2_Trigger, OUTPUT);
+    pinMode(FAN1_PWM_PIN, OUTPUT);
+    pinMode(FAN2_PWM_PIN, OUTPUT);
 }
 
 void FanController::controlFan1(bool state) {
-    digitalWrite(FAN_1_Trigger, state ? HIGH : LOW);
+    digitalWrite(FAN1_PWM_PIN, state ? HIGH : LOW);
 }
 
 void FanController::controlFan2(bool state) {
-    digitalWrite(FAN_2_Trigger, state ? HIGH : LOW);
+    digitalWrite(FAN2_PWM_PIN, state ? HIGH : LOW);
 }
 
 int FanController::readFan1Current() {
-    return analogRead(FAN_1_Sense);
+    return analogRead(FAN1_SHUNT_PIN);
 }
 
 int FanController::readFan2Current() {
-    return analogRead(FAN_2_Sense);
+    return analogRead(FAN2_SHUNT_PIN);
 }
 
 void FanController::toggle_Fan(bool fanState) {
